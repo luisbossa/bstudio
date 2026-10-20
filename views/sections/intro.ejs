@@ -1,0 +1,84 @@
+<section class="intro" aria-labelledby="intro-title">
+    <header class="intro__header">
+        <span class="doodle doodle--1" aria-hidden="true"><%- icon('sparkle') %></span>
+        <span class="doodle doodle--2" aria-hidden="true"><%- icon('sparkle') %></span>
+        <span class="doodle doodle--3" aria-hidden="true"><%- icon('sparkle') %></span>
+        <p class="eyebrow">
+            <span class="status-dot" aria-hidden="true"></span>
+            <%= intro.eyebrow %>
+        </p>
+        <h1 class="display intro__title" id="intro-title"><%- rich(intro.title, "span", "intro__highlight") %></h1>
+        <a href="#hero" class="scroll-cue" aria-label="Scroll to content"></a>
+    </header>
+
+    <div class="hero" id="hero">
+        <div class="hero__main">
+            <div class="hero__card surface-dark reveal">
+                <div class="hero__copy">
+                    <h2 class="hero__headline"><%- rich(intro.headline) %></h2>
+                    <% intro.paragraphs.forEach((paragraph) => { %>
+                        <p class="hero__text"><%= paragraph %></p>
+                    <% }) %>
+                </div>
+                <div class="hero__actions">
+                    <a href="#projects" class="btn btn--primary">
+                        <%= intro.primaryButton %> <%- icon('arrow', 'btn__icon') %>
+                    </a>
+                    <% if (site.cv) { %>
+                        <a href="<%= safeUrl(site.cv) %>" download class="btn btn--ghost">
+                            <%= intro.cvButton %> <%- icon('download', 'btn__icon btn__icon--down') %>
+                        </a>
+                    <% } %>
+                </div>
+            </div>
+
+            <div class="hero__row">
+                <aside class="hero__cta surface-light reveal">
+                    <p class="hero__cta-text"><%= intro.ctaText %></p>
+                    <a href="#contact" class="btn btn--dark">
+                        <%= intro.ctaButton %> <%- icon('arrow', 'btn__icon') %>
+                    </a>
+                </aside>
+                <p class="hero__stat surface-dark reveal">
+                    <strong class="hero__stat-value"><%= intro.statValue %></strong>
+                    <span class="hero__stat-label"><%= intro.statLabel %></span>
+                </p>
+            </div>
+        </div>
+
+        <figure class="hero__photo reveal">
+            <img src="<%= safeUrl(intro.photo, '') %>" alt="<%= intro.photoAlt %>" width="520" height="690"
+                fetchpriority="high">
+            <% if (intro.bubble) { %>
+                <figcaption class="sticker sticker--bubble"><%= intro.bubble %></figcaption>
+            <% } %>
+            <% if (intro.badgeText) { %>
+                <div class="spin-badge" aria-hidden="true">
+                    <svg class="spin-badge__text" viewBox="0 0 100 100">
+                        <defs>
+                            <path id="badge-circle" d="M50 50m-38 0a38 38 0 1 1 76 0a38 38 0 1 1-76 0"></path>
+                        </defs>
+                        <text>
+                            <textPath href="#badge-circle"><%= intro.badgeText %></textPath>
+                        </text>
+                    </svg>
+                    <%- icon('sparkle') %>
+                </div>
+            <% } %>
+        </figure>
+
+        <div class="hero__social surface-dark">
+            <span class="hero__social-label"><%= intro.followLabel %></span>
+            <ul class="social-list">
+                <% social.filter((s) => s.hero).forEach((s) => { %>
+                    <li>
+                        <a href="<%= safeUrl(s.url) %>" class="social-list__link" target="_blank" rel="noopener"
+                            aria-label="<%= s.name %>">
+                            <%- icon(s.icon) %>
+                        </a>
+                    </li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+</section>

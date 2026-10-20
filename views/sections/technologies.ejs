@@ -1,0 +1,16 @@
+<section class="technologies" id="tools" aria-labelledby="tools-title">
+    <h2 class="display technologies__title reveal" id="tools-title"><%= technologiesSection.title %></h2>
+
+    <div class="logo-marquee">
+        <% for (let group = 0; group < 2; group++) { %>
+            <ul class="logo-marquee__group" <%- group > 0 ? 'aria-hidden="true"' : '' %>>
+                <% technologies.forEach((tech) => { %>
+                    <li>
+                        <img src="<%= safeUrl(tech.image, '') %>" alt="<%= group > 0 ? '' : tech.name %>"
+                            title="<%= tech.name %>" loading="lazy">
+                    </li>
+                <% }) %>
+            </ul>
+        <% } %>
+    </div>
+</section>

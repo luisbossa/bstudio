@@ -1,0 +1,48 @@
+<%
+    const contactLinks = [
+        { icon: 'mail', text: contact.email, href: `mailto:${contact.email}` },
+        { icon: 'pin', text: contact.address, href: contact.mapsUrl, external: true },
+        { icon: 'phone', text: contact.phone, href: contact.phoneHref },
+    ].filter((link) => link.text);
+%>
+<footer class="site-footer">
+    <div class="site-footer__info">
+        <address class="site-footer__contact">
+            <ul class="footer-links">
+                <% contactLinks.forEach((link) => { %>
+                    <li>
+                        <a href="<%= safeUrl(link.href) %>" class="footer-link" <%- link.external ? 'target="_blank" rel="noopener"' : '' %>>
+                            <%- icon(link.icon, 'footer-link__icon') %>
+                            <span class="footer-link__text"><%= link.text %></span>
+                            <%- icon('arrow', 'footer-link__arrow') %>
+                        </a>
+                    </li>
+                <% }) %>
+            </ul>
+        </address>
+
+        <nav class="site-footer__social" aria-label="Social networks">
+            <ul class="footer-links">
+                <% social.filter((s) => s.footer).forEach((s) => { %>
+                    <li>
+                        <a href="<%= safeUrl(s.url) %>" class="footer-link" target="_blank" rel="noopener">
+                            <%- icon(s.icon, 'footer-link__icon') %>
+                            <span class="footer-link__text"><%= s.name %></span>
+                        </a>
+                    </li>
+                <% }) %>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="site-footer__bottom">
+        <div class="site-footer__bar">
+            <p class="brand">© <span class="accent"><%= footer.brand.charAt(0) %></span><%= footer.brand.slice(1) %>
+                <small class="brand__year"><%= new Date().getFullYear() %></small></p>
+            <a href="#top" class="to-top" aria-label="<%= footer.backToTop %>">
+                <span class="to-top__label" aria-hidden="true"><%= footer.backToTop %></span>
+                <%- icon('arrow-up-circle', 'to-top__icon') %>
+            </a>
+        </div>
+    </div>
+</footer>

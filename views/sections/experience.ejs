@@ -1,0 +1,31 @@
+<section class="experience" id="experience" aria-labelledby="experience-title">
+    <h2 class="display experience__title reveal" id="experience-title"><%= experienceSection.title %></h2>
+
+    <ol class="timeline">
+        <% experience.forEach((job, i) => { %>
+            <li class="timeline__item reveal">
+                <time class="timeline__year"><%= job.year %></time>
+
+                <article class="job-card" aria-labelledby="job-<%= i %>-role">
+                    <header class="job-card__head">
+                        <span class="job-card__index" aria-hidden="true"><%= pad(i + 1) %></span>
+                        <h3 class="job-card__role" id="job-<%= i %>-role"><%= job.role %></h3>
+                    </header>
+                    <div class="job-card__body">
+                        <p class="job-card__company"><%= job.company %></p>
+                        <% if (job.focus) { %>
+                            <p class="job-card__focus"><%= job.focus %></p>
+                        <% } %>
+                        <p class="job-card__text"><%= job.text %></p>
+                    </div>
+                </article>
+            </li>
+        <% }) %>
+    </ol>
+
+    <% if (experienceSection.nextLabel) { %>
+        <a href="#contact" class="timeline__next">
+            <%= experienceSection.nextLabel %> <%- icon('sparkle', 'timeline__next-icon') %>
+        </a>
+    <% } %>
+</section>

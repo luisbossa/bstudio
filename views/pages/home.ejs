@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" <%- locals.preview ? "data-preview" : "" %>>
+
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <% if (locals.message) { %>
+        <div class="toast" role="status" aria-live="polite">
+            <span class="toast__dot" aria-hidden="true"></span>
+            <p><%= message %></p>
+        </div>
+    <% } %>
+
+    <div class="scroll-progress" aria-hidden="true">
+        <span class="scroll-progress__bar" id="scroll-progress-bar"></span>
+    </div>
+
+    <div class="page" id="top">
+        <div class="page__frame">
+            <%- include('../partials/site-header') %>
+
+            <main id="main">
+                <%- include('../sections/intro') %>
+                <%- include('../partials/marquee', { text: marquee.text }) %>
+                <%- include('../sections/about') %>
+                <%- include('../sections/experience') %>
+                <%- include('../sections/projects') %>
+                <%- include('../sections/technologies') %>
+                <%- include('../sections/process') %>
+                <%- include('../sections/contact') %>
+            </main>
+
+            <%- include('../partials/site-footer') %>
+        </div>
+    </div>
+
+    <script src="/scripts/main.js?v=6" defer></script>
+</body>
+
+</html>

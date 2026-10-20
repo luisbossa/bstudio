@@ -1,0 +1,11 @@
+<%# Decorative scrolling strip: content is duplicated for a seamless loop. %>
+<div class="marquee" aria-hidden="true">
+    <% for (let group = 0; group < 2; group++) { %>
+        <div class="marquee__group">
+            <% for (let i = 0; i < 8; i++) { %>
+                <span class="marquee__item"><%= text %></span>
+                <span class="marquee__separator">⇔</span>
+            <% } %>
+        </div>
+    <% } %>
+</div>

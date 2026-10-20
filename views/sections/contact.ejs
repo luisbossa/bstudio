@@ -1,0 +1,32 @@
+<section class="contact" id="contact" aria-labelledby="contact-title">
+    <header class="contact__header reveal">
+        <h2 class="display contact__title" id="contact-title"><%= contactSection.title %></h2>
+        <p class="contact__lead"><%= contactSection.lead %></p>
+    </header>
+
+    <form class="contact-form reveal" id="contact-form" action="/" method="post">
+        <% if (contactSection.sticker) { %>
+            <span class="sticker" aria-hidden="true"><%= contactSection.sticker %></span>
+        <% } %>
+        <div class="contact-form__row">
+            <div class="field">
+                <label class="field__label" for="name"><%= contactSection.nameLabel %></label>
+                <input class="field__input" type="text" id="name" name="name"
+                    placeholder="<%= contactSection.namePlaceholder %>" autocomplete="name" required>
+            </div>
+            <div class="field">
+                <label class="field__label" for="email"><%= contactSection.emailLabel %></label>
+                <input class="field__input" type="email" id="email" name="email"
+                    placeholder="<%= contactSection.emailPlaceholder %>" autocomplete="email" required>
+            </div>
+        </div>
+        <div class="field">
+            <label class="field__label" for="message"><%= contactSection.messageLabel %></label>
+            <textarea class="field__input field__input--textarea" id="message" name="description" rows="5"
+                placeholder="<%= contactSection.messagePlaceholder %>" required></textarea>
+        </div>
+        <button type="submit" class="btn btn--dark btn--submit" id="contact-submit">
+            <span class="btn__label"><%= contactSection.submitLabel %></span> <%- icon('arrow', 'btn__icon') %>
+        </button>
+    </form>
+</section>

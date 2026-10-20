@@ -1,0 +1,54 @@
+<section class="projects" id="projects" aria-labelledby="projects-title">
+    <h2 class="display projects__title reveal" id="projects-title"><%= projectsSection.title %></h2>
+
+    <% projects.forEach((project, i) => { %>
+        <% const crop = cropStyle(project.videoCrop); %>
+        <article class="project<%= i % 2 ? ' project--reverse' : '' %><%= project.mobileImage ? ' project--has-mobile' : '' %>"
+            aria-labelledby="project-<%= i %>-title">
+            <div class="project__media reveal">
+                <a href="<%= safeUrl(project.url) %>" class="browser-frame" target="_blank" rel="noopener"
+                    aria-label="Open <%= project.label %> live">
+                    <div class="browser-frame__screen">
+                        <% if (project.video) { %>
+                            <video muted loop playsinline preload="metadata"
+                                <% if (crop) { %>class="is-cropped" style="<%= crop %>"<% } %>>
+                                <source src="<%= safeUrl(project.video, '') %>#t=0.1">
+                            </video>
+                        <% } %>
+                    </div>
+                    <% if (projectsSection.previewLabel) { %>
+                        <span class="browser-frame__badge" aria-hidden="true"><%= projectsSection.previewLabel %></span>
+                    <% } %>
+                </a>
+                <% if (project.mobileImage) { %>
+                    <img src="<%= safeUrl(project.mobileImage, '') %>" alt="<%= project.label %> on a phone"
+                        loading="lazy" class="project__mobile">
+                <% } %>
+            </div>
+
+            <div class="project__info reveal">
+                <p class="pill pill--cream"><%= pad(i + 1) %> / <%= pad(projects.length) %></p>
+                <h3 class="project__title" id="project-<%= i %>-title"><%= project.title %></h3>
+                <ul class="project__points">
+                    <% project.points.forEach((point) => { %>
+                        <li><%= point %></li>
+                    <% }) %>
+                </ul>
+                <div class="project__links">
+                    <% if (project.url) { %>
+                        <a href="<%= safeUrl(project.url) %>" class="btn btn--dark btn--wide" target="_blank"
+                            rel="noopener">
+                            <%= project.label %> <%- icon('arrow', 'btn__icon') %>
+                        </a>
+                    <% } %>
+                    <% if (project.repo) { %>
+                        <a href="<%= safeUrl(project.repo) %>" class="btn btn--light btn--wide" target="_blank"
+                            rel="noopener" aria-label="<%= project.label %> source code on GitHub">
+                            GitHub <%- icon('arrow', 'btn__icon') %>
+                        </a>
+                    <% } %>
+                </div>
+            </div>
+        </article>
+    <% }) %>
+</section>

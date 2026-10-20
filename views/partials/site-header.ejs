@@ -1,0 +1,58 @@
+<%
+    const loginHref = locals.isAdmin ? '/dashboard' : '/dashboard/login';
+    const loginLabel = locals.isAdmin ? 'Panel' : 'Login';
+%>
+<header class="site-header" id="site-header">
+    <div class="site-header__bar">
+        <a href="#top" class="site-header__logo" aria-label="<%= footer.brand %>, back to top">
+            <%- include('brand-logo', { brand: footer.brand, logo: site.logo }) %>
+        </a>
+
+        <nav class="site-nav" aria-label="Main navigation">
+            <ul class="site-nav__list">
+                <% nav.forEach((item) => { %>
+                    <li>
+                        <a href="<%= safeUrl(item.href) %>"
+                            class="site-nav__link<%= item.cta ? ' site-nav__link--cta' : '' %>"><%= item.label %></a>
+                    </li>
+                <% }) %>
+            </ul>
+        </nav>
+
+        <div class="site-header__actions">
+            <a href="<%= loginHref %>" class="login-link" title="<%= locals.isAdmin ? 'Open dashboard' : 'Log in to the dashboard' %>">
+                <%- icon('lock', 'login-link__icon') %>
+                <span class="login-link__label"><%= loginLabel %></span>
+            </a>
+
+            <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"
+                aria-controls="mobile-menu">
+                <span class="menu-toggle__line"></span>
+                <span class="menu-toggle__line"></span>
+                <span class="menu-toggle__line"></span>
+            </button>
+        </div>
+    </div>
+
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+        <ul class="mobile-menu__list">
+            <% nav.forEach((item) => { %>
+                <li><a href="<%= safeUrl(item.href) %>" class="mobile-menu__link"><%= item.label %></a></li>
+            <% }) %>
+        </ul>
+        <div class="mobile-menu__footer">
+            <ul class="mobile-menu__social">
+                <% social.filter((s) => s.menu).forEach((s) => { %>
+                    <li>
+                        <a href="<%= safeUrl(s.url) %>" target="_blank" rel="noopener" aria-label="<%= s.name %>">
+                            <%- icon(s.icon) %>
+                        </a>
+                    </li>
+                <% }) %>
+            </ul>
+            <a href="<%= loginHref %>" class="btn btn--primary mobile-menu__login">
+                <%- icon('lock', 'btn__icon') %> <%= loginLabel %>
+            </a>
+        </div>
+    </nav>
+</header>

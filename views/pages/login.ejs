@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex">
+    <title>Iniciar sesión · BStudio</title>
+    <link rel="icon" href="/images/favicon.webp">
+    <link rel="stylesheet" href="/css/dashboard.css?v=4" />
+</head>
+
+<body class="login-page">
+    <main class="login-card">
+        <span class="login-card__sticker">Panel ✦</span>
+        <span class="login-card__logo"><%- include('../partials/brand-logo', { brand: 'BStudio' }) %></span>
+        <h1 class="login-card__title">Hola de nuevo</h1>
+
+        <% if (!configured) { %>
+            <div class="alert alert--warning" role="alert">
+                <strong>El panel está desactivado.</strong>
+                Define <code>ADMIN_PASSWORD</code> en tu archivo <code>.env</code> (o en las variables de entorno de
+                Vercel) y reinicia el servidor.
+            </div>
+        <% } else { %>
+            <p class="login-card__lead">Escribe tu contraseña para editar la página.</p>
+
+            <% if (error) { %>
+                <div class="alert alert--error" role="alert"><%= error %></div>
+            <% } %>
+
+            <form method="post" action="/dashboard/login" class="login-form">
+                <label class="field">
+                    <span class="field__label">Contraseña</span>
+                    <input type="password" name="password" class="field__input" autocomplete="current-password"
+                        required autofocus>
+                </label>
+                <button type="submit" class="btn btn--primary btn--block">Entrar</button>
+            </form>
+        <% } %>
+
+        <a href="/" class="login-card__back">← Volver al sitio</a>
+    </main>
+</body>
+
+</html>

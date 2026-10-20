@@ -1,0 +1,13 @@
+<section class="about" id="about" aria-labelledby="about-title">
+    <h2 class="display about__title reveal" id="about-title"><%= about.title %></h2>
+
+    <div class="about__body reveal">
+        <% about.paragraphs.forEach((paragraph) => { %>
+            <p class="about__text"><%- rich(paragraph, 'mark', 'highlight') %></p>
+        <% }) %>
+        <% if (about.signature) { %>
+            <img src="<%= safeUrl(about.signature, '') %>" alt="Signature" width="380" height="150" loading="lazy"
+                class="about__signature">
+        <% } %>
+    </div>
+</section>

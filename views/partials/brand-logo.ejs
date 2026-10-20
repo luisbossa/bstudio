@@ -1,0 +1,9 @@
+<%# Text wordmark: first letter in an orange sticker, the rest in display type.
+    An uploaded logo (site.logo) replaces it. Params: brand, logo (optional). %>
+<% if (locals.logo) { %>
+    <img src="<%= safeUrl(logo, '') %>" alt="<%= brand %>" class="brand-logo__image">
+<% } else { %>
+    <span class="brand-logo" aria-hidden="true">
+        <span class="brand-logo__mark"><%= brand.charAt(0) %></span><span class="brand-logo__text"><%= brand.slice(1) %></span>
+    </span>
+<% } %>

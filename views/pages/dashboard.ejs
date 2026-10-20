@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex">
+    <title>Panel · BStudio</title>
+    <link rel="icon" href="/images/favicon.webp">
+    <link rel="stylesheet" href="/css/dashboard.css?v=4" />
+</head>
+
+<body class="dash" data-preview-open="true">
+    <header class="topbar">
+        <button type="button" class="topbar__menu" id="sidebar-toggle" aria-label="Mostrar secciones"
+            aria-controls="sidebar" aria-expanded="false">☰</button>
+
+        <a href="/" class="topbar__brand" target="_blank" rel="noopener">
+            <%- include('../partials/brand-logo', { brand: 'BStudio' }) %>
+            <span class="topbar__tag">Panel</span>
+        </a>
+
+        <span class="status" id="save-status" data-state="loading" role="status" aria-live="polite">Cargando…</span>
+
+        <div class="topbar__actions">
+            <button type="button" class="btn btn--ghost" id="preview-toggle" aria-pressed="true">
+                Vista previa
+            </button>
+            <a href="/" class="btn btn--ghost topbar__site" target="_blank" rel="noopener">Ver sitio ↗</a>
+            <button type="button" class="btn btn--primary" id="save-button" disabled>
+                Guardar <kbd>Ctrl S</kbd>
+            </button>
+            <details class="more">
+                <summary class="btn btn--ghost" aria-label="Más opciones">⋯</summary>
+                <div class="more__menu">
+                    <button type="button" class="more__item" id="reset-button">Restaurar contenido original</button>
+                    <form method="post" action="/dashboard/logout">
+                        <button type="submit" class="more__item">Cerrar sesión</button>
+                    </form>
+                </div>
+            </details>
+        </div>
+    </header>
+
+    <div class="layout">
+        <nav class="sidebar" id="sidebar" aria-label="Secciones">
+            <p class="sidebar__title">Secciones</p>
+            <ul class="sidebar__list" id="section-nav"></ul>
+            <p class="sidebar__storage">Guardado en: <strong><%= storage %></strong></p>
+        </nav>
+
+        <main class="editor" id="editor" aria-live="polite">
+            <p class="editor__loading">Cargando contenido…</p>
+        </main>
+
+        <aside class="preview" id="preview" aria-label="Vista previa">
+            <div class="preview__bar">
+                <span class="preview__dots" aria-hidden="true"></span>
+                <span class="preview__label">Vista previa en vivo</span>
+                <div class="preview__devices" role="group" aria-label="Tamaño de la vista previa">
+                    <button type="button" class="chip is-active" data-device="desktop">Escritorio</button>
+                    <button type="button" class="chip" data-device="mobile">Móvil</button>
+                </div>
+            </div>
+            <div class="preview__stage" id="preview-stage" data-device="desktop">
+                <iframe id="preview-frame" title="Vista previa de la página" class="preview__frame"></iframe>
+            </div>
+        </aside>
+    </div>
+
+    <div class="toasts" id="toasts" aria-live="polite"></div>
+
+    <script src="/scripts/dashboard.js?v=7" defer></script>
+</body>
+
+</html>

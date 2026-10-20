@@ -1,0 +1,17 @@
+<section class="process" id="process" aria-labelledby="process-title">
+    <div class="process__layout">
+        <h2 class="process__title" id="process-title"><%= processSection.title %></h2>
+
+        <ol class="process__steps">
+            <% processSteps.forEach((step, i) => { %>
+                <li class="step" style="--i: <%= i %>">
+                    <div class="step__head">
+                        <h3 class="step__title"><%= step.title %></h3>
+                        <span class="step__number" aria-hidden="true"><%= pad(i + 1) %></span>
+                    </div>
+                    <p class="step__text"><%= step.text %></p>
+                </li>
+            <% }) %>
+        </ol>
+    </div>
+</section>

@@ -1,0 +1,13 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title><%= site.title %></title>
+<meta name="description" content="<%= site.description %>">
+<meta name="theme-color" content="<%= theme.mate %>">
+<meta property="og:title" content="<%= site.title %>">
+<meta property="og:description" content="<%= site.description %>">
+<meta property="og:type" content="website">
+<link rel="icon" href="<%= safeUrl(site.favicon, '/images/favicon.webp') %>">
+<link rel="preload" href="/fonts/drukwide.otf" as="font" type="font/otf" crossorigin>
+<link rel="preload" href="/fonts/degulartext.otf" as="font" type="font/otf" crossorigin>
+<link rel="stylesheet" href="/css/style.css?v=13" />
+<style><%- themeCss(theme) %></style>
