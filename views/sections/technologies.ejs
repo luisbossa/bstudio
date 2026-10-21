@@ -5,7 +5,7 @@
         <% for (let group = 0; group < 2; group++) { %>
             <ul class="logo-marquee__group" <%- group > 0 ? 'aria-hidden="true"' : '' %>>
                 <% technologies.forEach((tech) => { %>
-                    <li>
+                    <li class="logo-chip<%= tech.dark ? ' logo-chip--dark' : '' %>">
                         <img src="<%= safeUrl(tech.image, '') %>" alt="<%= group > 0 ? '' : tech.name %>"
                             title="<%= tech.name %>" loading="lazy">
                     </li>

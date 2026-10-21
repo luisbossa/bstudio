@@ -695,11 +695,18 @@ address {
   white-space: nowrap;
 }
 
+/* Solid ink sparkle between words: readable on the orange tape */
 .marquee__separator {
-  padding: 0 1rem;
-  font-size: 2.5rem;
-  color: var(--clr-light);
-  -webkit-text-stroke: 1.5px var(--clr-mate);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  margin: 0 0.75rem;
+  font-size: 1.6rem;
+  color: var(--clr-mate);
+}
+
+.marquee__separator .icon {
+  animation: spin 6s linear infinite;
 }
 
 @media (max-width: 991px) {
@@ -710,7 +717,7 @@ address {
 
 @media (max-width: 767px) {
   .marquee__separator {
-    font-size: 2rem;
+    font-size: 1.3rem;
   }
 }
 
@@ -733,36 +740,57 @@ address {
   animation-duration: 70s;
 }
 
-/* Each logo sits on a little paper chip */
-.logo-marquee__group li {
+/* Each logo sits on a little paper chip, all the same height */
+.logo-chip {
   display: grid;
   place-items: center;
+  flex-shrink: 0;
+  height: 72px;
+  min-width: 72px;
   margin-left: 1.5rem;
-  padding: 12px 16px;
+  padding: 0 14px;
   background-color: var(--clr-light);
   border: var(--outline);
   border-radius: 18px;
   box-shadow: 4px 4px 0 0 var(--clr-orange);
+  transform: rotate(3deg);
   transition: transform 0.35s var(--ease-bounce), box-shadow 0.35s var(--ease-bounce);
 }
 
-.logo-marquee__group li:nth-child(even) {
+.logo-chip:nth-child(even) {
   transform: rotate(-4deg);
 }
 
-.logo-marquee__group li:nth-child(odd) {
-  transform: rotate(3deg);
+/* For white / light logos: ink chip with a paper outline */
+.logo-chip--dark {
+  background-color: var(--clr-mate);
+  border-color: var(--clr-light);
 }
 
-.logo-marquee__group li:hover {
+.logo-chip:hover {
   transform: translateY(-6px) rotate(0deg) scale(1.1);
   box-shadow: 6px 6px 0 0 var(--clr-orange);
 }
 
-.logo-marquee__group img {
-  height: 2.2vw;
-  min-height: 1.8rem;
+.logo-chip img {
+  width: auto;
+  max-width: 120px;
+  height: 40px;
   object-fit: contain;
+}
+
+@media (max-width: 767px) {
+  .logo-chip {
+    height: 60px;
+    min-width: 60px;
+    margin-left: 1rem;
+    padding: 0 10px;
+  }
+
+  .logo-chip img {
+    max-width: 96px;
+    height: 32px;
+  }
 }
 
 @media (max-width: 991px) {
@@ -810,7 +838,6 @@ address {
   border: var(--outline);
   border-radius: 18px;
   box-shadow: var(--shadow-hard-lg);
-  animation: levitate-up 3.5s ease-in-out infinite;
   transition: translate 0.4s var(--ease-bounce), rotate 0.4s var(--ease-bounce),
     box-shadow 0.4s var(--ease-bounce);
 }
@@ -2083,10 +2110,6 @@ address {
   flex-direction: row-reverse;
 }
 
-.project--reverse .browser-frame {
-  animation-name: levitate-down;
-}
-
 .project--reverse .browser-frame:hover,
 .project--reverse .browser-frame.is-playing {
   rotate: 0.4deg;
@@ -2569,12 +2592,11 @@ address {
   border: 2px solid var(--clr-orange);
   border-radius: var(--radius-pill);
   box-shadow: var(--shadow-inset);
-  transition: transform 0.3s var(--ease-out), background-color 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .to-top:hover {
   background-color: var(--clr-orange-light);
-  transform: translateY(-3px) rotate(-3deg);
 }
 
 .to-top:hover .to-top__icon {
@@ -2699,18 +2721,6 @@ address {
 @keyframes marquee {
   to {
     transform: translateX(-100%);
-  }
-}
-
-@keyframes levitate-up {
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
-@keyframes levitate-down {
-  50% {
-    transform: translateY(8px);
   }
 }
 

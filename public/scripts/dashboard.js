@@ -173,6 +173,7 @@ const SECTIONS = [
         fields: [
           { key: "name", label: "Nombre" },
           { key: "image", label: "Logo", type: "image" },
+          { key: "dark", label: "Fondo oscuro (para logos blancos o claros)", type: "checkbox" },
         ],
       },
     ],
