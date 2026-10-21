@@ -1,9 +1,5 @@
-// Live preview inside the dashboard: no entrance animations, no real form posts.
+// Live preview inside the dashboard: no real form posts.
 const isPreview = document.documentElement.hasAttribute("data-preview");
-
-// Enables the reveal-on-scroll styles. Set here (not in the HTML) so content
-// stays visible if this script fails to load.
-if (!isPreview) document.documentElement.classList.add("reveal-ready");
 
 const prefersReducedMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)"
@@ -35,7 +31,7 @@ const initMobileMenu = () => {
     if (e.key === "Escape") setOpen(false);
   });
 
-  window.matchMedia("(min-width: 768px)").addEventListener("change", (e) => {
+  window.matchMedia("(min-width: 1081px)").addEventListener("change", (e) => {
     if (e.matches) setOpen(false);
   });
 };
@@ -66,47 +62,82 @@ const initScrollState = () => {
   update();
 };
 
+// A link is active only while its section crosses a line at 35% of the
+// viewport, so nothing is highlighted on the intro or on sections not in the menu.
 const initActiveNav = () => {
   const links = document.querySelectorAll(".site-nav__link, .mobile-menu__link");
-  const sections = [...links]
-    .map((link) => document.querySelector(link.getAttribute("href")))
+  const sections = [...new Set([...links].map((link) => link.getAttribute("href")))]
+    .map((href) => (href.startsWith("#") ? document.querySelector(href) : null))
     .filter(Boolean);
+  let ticking = false;
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const href = `#${entry.target.id}`;
-        links.forEach((link) => {
-          link.classList.toggle("is-active", link.getAttribute("href") === href);
-        });
-      });
+  const update = () => {
+    const line = window.innerHeight * 0.35;
+    const current = sections.find((section) => {
+      const { top, bottom } = section.getBoundingClientRect();
+      return top <= line && bottom > line;
+    });
+    const href = current ? `#${current.id}` : null;
+    links.forEach((link) => link.classList.toggle("is-active", link.getAttribute("href") === href));
+    ticking = false;
+  };
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) requestAnimationFrame(update);
+      ticking = true;
     },
-    { rootMargin: "-45% 0px -50% 0px" }
+    { passive: true }
   );
-
-  new Set(sections).forEach((section) => observer.observe(section));
+  window.addEventListener("resize", update);
+  update();
 };
 
 /*----------------- REVEAL ON SCROLL ----------------*/
 
+// Each [data-reveal] element animates in once, the first time it enters the
+// screen. Children of [data-reveal-stagger] reveal one after another.
 const initReveal = () => {
-  const elements = document.querySelectorAll(".reveal");
+  const root = document.documentElement;
+  if (!root.classList.contains("reveal-ready")) return;
+  window.__revealStarted = true;
 
-  if (prefersReducedMotion) {
-    elements.forEach((el) => el.classList.add("is-visible"));
-    return;
-  }
+  document.querySelectorAll("[data-reveal-stagger]").forEach((group) => {
+    [...group.children].forEach((child, index) => {
+      if (!child.hasAttribute("data-reveal")) child.setAttribute("data-reveal", "");
+      child.dataset.revealDelay = String(Math.min(index, 6) * 110);
+    });
+  });
+
+  const elements = document.querySelectorAll("[data-reveal]");
+
+  elements.forEach((el) => {
+    if (el.dataset.revealDelay) el.style.setProperty("--reveal-delay", `${el.dataset.revealDelay}ms`);
+  });
+
+  // When the entrance ends, drop the reveal styles so the element is back to normal.
+  const finish = (el) => {
+    el.removeAttribute("data-reveal");
+    el.classList.remove("is-revealed");
+    el.style.removeProperty("--reveal-delay");
+  };
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
+        const el = entry.target;
+        observer.unobserve(el);
+        el.addEventListener("transitionend", function onEnd(event) {
+          if (event.target !== el || event.propertyName !== "opacity") return;
+          el.removeEventListener("transitionend", onEnd);
+          finish(el);
+        });
+        el.classList.add("is-revealed");
       });
     },
-    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    { threshold: 0.1, rootMargin: "0px 0px -8% 0px" }
   );
 
   elements.forEach((el) => observer.observe(el));

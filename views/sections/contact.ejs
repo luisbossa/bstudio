@@ -1,10 +1,10 @@
 <section class="contact" id="contact" aria-labelledby="contact-title">
-    <header class="contact__header reveal">
+    <header class="contact__header" data-reveal>
         <h2 class="display contact__title" id="contact-title"><%= contactSection.title %></h2>
         <p class="contact__lead"><%= contactSection.lead %></p>
     </header>
 
-    <form class="contact-form reveal" id="contact-form" action="/" method="post">
+    <form class="contact-form" id="contact-form" data-reveal="zoom" data-reveal-delay="150" action="/" method="post">
         <% if (contactSection.sticker) { %>
             <span class="sticker" aria-hidden="true"><%= contactSection.sticker %></span>
         <% } %>

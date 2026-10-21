@@ -382,10 +382,6 @@ address {
   transition: transform 0.4s var(--ease-bounce);
 }
 
-.sticker:hover {
-  transform: rotate(0deg) scale(1.08);
-}
-
 /* Speech bubble tail */
 .sticker--bubble {
   border-radius: 18px;
@@ -504,17 +500,6 @@ address {
     transform 0.25s var(--ease-bounce), box-shadow 0.25s var(--ease-bounce);
 }
 
-/* Every button lifts on hover and squashes into its shadow when pressed */
-.btn:hover {
-  transform: translate(-2px, -2px) rotate(-1.5deg);
-  box-shadow: 7px 7px 0 0 var(--btn-shadow, var(--clr-mate));
-}
-
-.btn:active {
-  transform: translate(4px, 4px);
-  box-shadow: 0 0 0 0 var(--btn-shadow, var(--clr-mate));
-}
-
 /* On dark cards the ink shadow would disappear, so use a light one */
 .surface-dark .btn {
   --btn-shadow: rgba(0, 0, 0, 0.55);
@@ -524,14 +509,6 @@ address {
   width: 16px;
   height: 16px;
   transition: transform 0.3s var(--ease-out);
-}
-
-.btn:hover .btn__icon {
-  transform: translate(2px, -2px);
-}
-
-.btn:hover .btn__icon--down {
-  transform: translateY(2px);
 }
 
 /* Orange */
@@ -767,11 +744,6 @@ address {
   border-color: var(--clr-light);
 }
 
-.logo-chip:hover {
-  transform: translateY(-6px) rotate(0deg) scale(1.1);
-  box-shadow: 6px 6px 0 0 var(--clr-orange);
-}
-
 .logo-chip img {
   width: auto;
   max-width: 120px;
@@ -825,7 +797,6 @@ address {
   color: var(--clr-mate);
   background-color: var(--clr-orange);
   border-color: var(--clr-orange);
-  animation: wiggle 0.5s var(--ease-out);
 }
 
 /* Browser frame (project videos) ------------------------------------------ */
@@ -852,13 +823,6 @@ address {
     radial-gradient(circle at 40px 50%, var(--clr-light) 5px, var(--clr-mate) 6px 7.5px, transparent 8px),
     radial-gradient(circle at 62px 50%, var(--clr-blue) 5px, var(--clr-mate) 6px 7.5px, transparent 8px),
     var(--clr-cream);
-}
-
-.browser-frame:hover,
-.browser-frame.is-playing {
-  translate: -4px -4px;
-  rotate: -1deg;
-  box-shadow: 12px 12px 0 0 var(--clr-orange);
 }
 
 .browser-frame__screen {
@@ -907,7 +871,6 @@ address {
 
 .browser-frame.is-playing .browser-frame__badge {
   opacity: 0;
-  transform: translateY(6px);
 }
 
 /* Form fields ------------------------------------------------------------- */
@@ -1037,10 +1000,6 @@ address {
   transition: transform 0.4s var(--ease-bounce);
 }
 
-.site-header__logo:hover .brand-logo__mark {
-  transform: rotate(6deg) scale(1.1);
-}
-
 .brand-logo__image {
   width: auto;
   height: 44px;
@@ -1070,7 +1029,6 @@ address {
 
 .site-nav__link:hover {
   background-color: rgba(251, 250, 249, 0.12);
-  transform: translateY(-2px);
 }
 
 .site-nav__link.is-active {
@@ -1091,7 +1049,6 @@ address {
 
 .site-nav__link--cta:hover {
   background-color: var(--clr-orange-light);
-  transform: rotate(-4deg) scale(1.05);
 }
 
 .site-header__actions {
@@ -1121,16 +1078,11 @@ address {
   color: var(--clr-mate);
   background-color: var(--clr-light);
   border-color: var(--clr-light);
-  transform: rotate(-3deg);
 }
 
 .login-link__icon {
   width: 18px;
   height: 18px;
-}
-
-.login-link:hover .login-link__icon {
-  animation: wiggle 0.5s var(--ease-out);
 }
 
 /* Burger: three lines that turn into an X */
@@ -1148,10 +1100,6 @@ address {
   box-shadow: 3px 3px 0 0 var(--clr-light);
   cursor: pointer;
   transition: transform 0.3s var(--ease-bounce);
-}
-
-.menu-toggle:hover {
-  transform: rotate(-8deg);
 }
 
 .menu-toggle__line {
@@ -1222,7 +1170,7 @@ address {
   --btn-shadow: rgba(0, 0, 0, 0.55);
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1280px) {
   .site-nav__link {
     padding: 8px 10px;
     font-size: 0.9rem;
@@ -1237,7 +1185,7 @@ address {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1080px) {
   .site-nav {
     display: none;
   }
@@ -1258,9 +1206,9 @@ address {
   .mobile-menu {
     position: absolute;
     top: calc(100% + 10px);
-    left: var(--section-x);
     right: var(--section-x);
     display: block;
+    width: min(380px, calc(100% - 2 * var(--section-x)));
     padding: var(--sp-2);
     background-color: var(--clr-mate);
     border: var(--outline);
@@ -1333,10 +1281,6 @@ address {
   text-shadow: none;
   transform: rotate(-2.5deg);
   transition: transform 0.5s var(--ease-bounce);
-}
-
-.intro__title:hover .intro__highlight {
-  transform: rotate(1.5deg) scale(1.03);
 }
 
 .intro__title::after {
@@ -1468,11 +1412,6 @@ address {
   line-height: 1.25;
 }
 
-.hero__card:hover,
-.hero__cta:hover {
-  transform: rotate(-0.6deg);
-}
-
 /* The stat card sits a bit crooked, like a sticker */
 .hero__stat {
   display: flex;
@@ -1480,10 +1419,6 @@ address {
   justify-content: center;
   padding: var(--sp-2) 62px var(--sp-4) var(--sp-4);
   transform: rotate(2deg);
-}
-
-.hero__stat:hover {
-  transform: rotate(-2deg) scale(1.03);
 }
 
 .hero__stat-value {
@@ -1511,10 +1446,6 @@ address {
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-hard-lg);
   transition: transform 0.5s var(--ease-bounce);
-}
-
-.hero__photo:hover {
-  transform: rotate(1.2deg);
 }
 
 .hero__photo img {
@@ -1858,10 +1789,6 @@ address {
   transition: transform 0.4s var(--ease-bounce);
 }
 
-.timeline__item:hover .timeline__year {
-  transform: rotate(8deg) scale(1.1);
-}
-
 .job-card {
   --tilt: -1.5deg;
   --head-bg: var(--clr-orange);
@@ -1886,11 +1813,6 @@ address {
 .timeline__item:nth-child(3n) .job-card {
   --head-bg: var(--clr-mate);
   --head-fg: var(--clr-light);
-}
-
-.timeline__item:hover .job-card {
-  transform: translate(-3px, -3px) rotate(0deg);
-  box-shadow: 12px 12px 0 0 var(--clr-orange);
 }
 
 .job-card__head {
@@ -1972,11 +1894,6 @@ address {
   box-shadow: 5px 5px 0 0 var(--clr-orange);
   transform: rotate(-3deg);
   transition: transform 0.4s var(--ease-bounce), box-shadow 0.4s var(--ease-bounce);
-}
-
-.timeline__next:hover {
-  transform: rotate(0deg) scale(1.06);
-  box-shadow: 8px 8px 0 0 var(--clr-orange);
 }
 
 .timeline__next-icon {
@@ -2108,11 +2025,6 @@ address {
 
 .project--reverse {
   flex-direction: row-reverse;
-}
-
-.project--reverse .browser-frame:hover,
-.project--reverse .browser-frame.is-playing {
-  rotate: 0.4deg;
 }
 
 .project__media {
@@ -2299,15 +2211,6 @@ address {
 
 .step:last-child {
   margin-bottom: 0;
-}
-
-.step:hover {
-  transform: translate(-3px, -3px) rotate(0deg);
-  box-shadow: var(--shadow-hard-lg);
-}
-
-.step:hover .step__number {
-  animation: wiggle 0.5s var(--ease-out);
 }
 
 .step__head {
@@ -2520,10 +2423,6 @@ address {
   transition: padding 0.3s var(--ease-out);
 }
 
-.footer-link:hover {
-  padding-left: 10px;
-}
-
 .footer-link__icon {
   width: 30px;
   height: 30px;
@@ -2550,7 +2449,6 @@ address {
 
 .footer-link:hover .footer-link__arrow {
   color: var(--clr-orange-deep);
-  transform: translate(3px, -3px);
 }
 
 .site-footer__bottom {
@@ -2599,10 +2497,6 @@ address {
   background-color: var(--clr-orange-light);
 }
 
-.to-top:hover .to-top__icon {
-  animation: hop 0.6s var(--ease-bounce) infinite alternate;
-}
-
 .to-top__label {
   font-size: 0.85rem;
   font-weight: 900;
@@ -2617,10 +2511,6 @@ address {
 
 .to-top__icon .icon__inner {
   stroke: var(--clr-orange);
-}
-
-.to-top:hover .to-top__icon {
-  transform: translateY(-2px);
 }
 
 .to-top:hover .icon__inner {
@@ -2654,10 +2544,6 @@ address {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-  }
-
-  .site-footer__social .footer-link:hover {
-    padding-left: 0;
   }
 }
 
@@ -2705,17 +2591,34 @@ address {
 /* 6. MOTION
    ========================================================================== */
 
-/* Hidden only once main.js has run, so content never stays invisible */
-.reveal-ready .reveal {
+/* Reveal on scroll: each [data-reveal] element animates in once, the first time
+   it enters the screen. Only active after .reveal-ready is set (head.ejs);
+   main.js removes the attribute when the animation ends. */
+.reveal-ready [data-reveal] {
   opacity: 0;
-  translate: 0 40px;
-  transition: opacity 0.8s var(--ease-out), translate 0.8s var(--ease-out),
-    transform 0.4s var(--ease-bounce), box-shadow 0.3s var(--ease-out);
+  translate: 0 36px;
+  transition: opacity 0.7s var(--ease-out), translate 0.8s var(--ease-out),
+    scale 0.8s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
 }
 
-.reveal-ready .reveal.is-visible {
+.reveal-ready [data-reveal="left"] {
+  translate: -48px 0;
+}
+
+.reveal-ready [data-reveal="right"] {
+  translate: 48px 0;
+}
+
+.reveal-ready [data-reveal="zoom"] {
+  translate: 0 20px;
+  scale: 0.92;
+}
+
+.reveal-ready [data-reveal].is-revealed {
   opacity: 1;
   translate: none;
+  scale: none;
 }
 
 @keyframes marquee {
@@ -2816,10 +2719,5 @@ address {
   .marquee__group,
   .logo-marquee__group {
     animation: none !important;
-  }
-
-  .reveal-ready .reveal {
-    opacity: 1;
-    translate: none;
   }
 }

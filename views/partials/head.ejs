@@ -9,5 +9,17 @@
 <link rel="icon" href="<%= safeUrl(site.favicon, '/images/favicon.webp') %>">
 <link rel="preload" href="/fonts/drukwide.otf" as="font" type="font/otf" crossorigin>
 <link rel="preload" href="/fonts/degulartext.otf" as="font" type="font/otf" crossorigin>
-<link rel="stylesheet" href="/css/style.css?v=16" />
+<link rel="stylesheet" href="/css/style.css?v=20" />
+<script>
+    // Hide [data-reveal] elements before the first paint; main.js animates them in.
+    // Safety net: if main.js never runs, show everything after 2.5s.
+    (function (root) {
+        if (root.hasAttribute("data-preview") || !("IntersectionObserver" in window) ||
+            matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        root.classList.add("reveal-ready");
+        setTimeout(function () {
+            if (!window.__revealStarted) root.classList.remove("reveal-ready");
+        }, 2500);
+    })(document.documentElement);
+</script>
 <style><%- themeCss(theme) %></style>

@@ -1,7 +1,7 @@
 <section class="about" id="about" aria-labelledby="about-title">
-    <h2 class="display about__title reveal" id="about-title"><%= about.title %></h2>
+    <h2 class="display about__title" data-reveal="left" id="about-title"><%= about.title %></h2>
 
-    <div class="about__body reveal">
+    <div class="about__body" data-reveal-stagger>
         <% about.paragraphs.forEach((paragraph) => { %>
             <p class="about__text"><%- rich(paragraph, 'mark', 'highlight') %></p>
         <% }) %>

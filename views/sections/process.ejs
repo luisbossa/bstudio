@@ -1,8 +1,8 @@
 <section class="process" id="process" aria-labelledby="process-title">
     <div class="process__layout">
-        <h2 class="process__title" id="process-title"><%= processSection.title %></h2>
+        <h2 class="process__title" data-reveal="left" id="process-title"><%= processSection.title %></h2>
 
-        <ol class="process__steps">
+        <ol class="process__steps" data-reveal-stagger>
             <% processSteps.forEach((step, i) => { %>
                 <li class="step" style="--i: <%= i %>">
                     <div class="step__head">

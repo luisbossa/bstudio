@@ -1,9 +1,9 @@
 <section class="experience" id="experience" aria-labelledby="experience-title">
-    <h2 class="display experience__title reveal" id="experience-title"><%= experienceSection.title %></h2>
+    <h2 class="display experience__title" data-reveal id="experience-title"><%= experienceSection.title %></h2>
 
     <ol class="timeline">
         <% experience.forEach((job, i) => { %>
-            <li class="timeline__item reveal">
+            <li class="timeline__item" data-reveal="<%= i % 2 ? 'right' : 'left' %>">
                 <time class="timeline__year"><%= job.year %></time>
 
                 <article class="job-card" aria-labelledby="job-<%= i %>-role">
@@ -24,7 +24,7 @@
     </ol>
 
     <% if (experienceSection.nextLabel) { %>
-        <a href="#contact" class="timeline__next">
+        <a href="#contact" class="timeline__next" data-reveal="zoom">
             <%= experienceSection.nextLabel %> <%- icon('sparkle', 'timeline__next-icon') %>
         </a>
     <% } %>

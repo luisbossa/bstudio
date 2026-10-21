@@ -1,11 +1,11 @@
 <section class="projects" id="projects" aria-labelledby="projects-title">
-    <h2 class="display projects__title reveal" id="projects-title"><%= projectsSection.title %></h2>
+    <h2 class="display projects__title" data-reveal id="projects-title"><%= projectsSection.title %></h2>
 
     <% projects.forEach((project, i) => { %>
         <% const crop = cropStyle(project.videoCrop); %>
         <article class="project<%= i % 2 ? ' project--reverse' : '' %><%= project.mobileImage ? ' project--has-mobile' : '' %>"
             aria-labelledby="project-<%= i %>-title">
-            <div class="project__media reveal">
+            <div class="project__media" data-reveal="<%= i % 2 ? 'right' : 'left' %>">
                 <a href="<%= safeUrl(project.url) %>" class="browser-frame" target="_blank" rel="noopener"
                     aria-label="Open <%= project.label %> live">
                     <div class="browser-frame__screen">
@@ -26,7 +26,7 @@
                 <% } %>
             </div>
 
-            <div class="project__info reveal">
+            <div class="project__info" data-reveal-stagger>
                 <p class="pill pill--cream"><%= pad(i + 1) %> / <%= pad(projects.length) %></p>
                 <h3 class="project__title" id="project-<%= i %>-title"><%= project.title %></h3>
                 <ul class="project__points">

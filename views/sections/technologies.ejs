@@ -1,7 +1,7 @@
 <section class="technologies" id="tools" aria-labelledby="tools-title">
-    <h2 class="display technologies__title reveal" id="tools-title"><%= technologiesSection.title %></h2>
+    <h2 class="display technologies__title" data-reveal id="tools-title"><%= technologiesSection.title %></h2>
 
-    <div class="logo-marquee">
+    <div class="logo-marquee" data-reveal="zoom" data-reveal-delay="100">
         <% for (let group = 0; group < 2; group++) { %>
             <ul class="logo-marquee__group" <%- group > 0 ? 'aria-hidden="true"' : '' %>>
                 <% technologies.forEach((tech) => { %>

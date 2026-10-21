@@ -25,6 +25,7 @@ module.exports = {
 
   nav: [
     { href: "#about", label: "About", cta: false },
+    { href: "#experience", label: "Experience", cta: false },
     { href: "#projects", label: "Projects", cta: false },
     { href: "#process", label: "Process", cta: false },
     { href: "#contact", label: "Contact", cta: true },

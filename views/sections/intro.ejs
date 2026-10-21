@@ -3,17 +3,17 @@
         <span class="doodle doodle--1" aria-hidden="true"><%- icon('sparkle') %></span>
         <span class="doodle doodle--2" aria-hidden="true"><%- icon('sparkle') %></span>
         <span class="doodle doodle--3" aria-hidden="true"><%- icon('sparkle') %></span>
-        <p class="eyebrow">
+        <p class="eyebrow" data-reveal>
             <span class="status-dot" aria-hidden="true"></span>
             <%= intro.eyebrow %>
         </p>
         <h1 class="display intro__title" id="intro-title"><%- rich(intro.title, "span", "intro__highlight") %></h1>
-        <a href="#hero" class="scroll-cue" aria-label="Scroll to content"></a>
+        <a href="#hero" class="scroll-cue" data-reveal data-reveal-delay="500" aria-label="Scroll to content"></a>
     </header>
 
     <div class="hero" id="hero">
-        <div class="hero__main">
-            <div class="hero__card surface-dark reveal">
+        <div class="hero__main" data-reveal-stagger>
+            <div class="hero__card surface-dark">
                 <div class="hero__copy">
                     <h2 class="hero__headline"><%- rich(intro.headline) %></h2>
                     <% intro.paragraphs.forEach((paragraph) => { %>
@@ -33,20 +33,20 @@
             </div>
 
             <div class="hero__row">
-                <aside class="hero__cta surface-light reveal">
+                <aside class="hero__cta surface-light">
                     <p class="hero__cta-text"><%= intro.ctaText %></p>
                     <a href="#contact" class="btn btn--dark">
                         <%= intro.ctaButton %> <%- icon('arrow', 'btn__icon') %>
                     </a>
                 </aside>
-                <p class="hero__stat surface-dark reveal">
+                <p class="hero__stat surface-dark">
                     <strong class="hero__stat-value"><%= intro.statValue %></strong>
                     <span class="hero__stat-label"><%= intro.statLabel %></span>
                 </p>
             </div>
         </div>
 
-        <figure class="hero__photo reveal">
+        <figure class="hero__photo" data-reveal="zoom" data-reveal-delay="150">
             <img src="<%= safeUrl(intro.photo, '') %>" alt="<%= intro.photoAlt %>" width="520" height="690"
                 fetchpriority="high">
             <% if (intro.bubble) { %>
@@ -67,7 +67,7 @@
             <% } %>
         </figure>
 
-        <div class="hero__social surface-dark">
+        <div class="hero__social surface-dark" data-reveal data-reveal-delay="300">
             <span class="hero__social-label"><%= intro.followLabel %></span>
             <ul class="social-list">
                 <% social.filter((s) => s.hero).forEach((s) => { %>
